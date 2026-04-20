@@ -32,18 +32,18 @@ heart-disease-mlops/
 
 ## Etapas
 
-### ✅ ETAPA 0 – Estructura de carpetas
+###  ETAPA 0 – Estructura de carpetas
 La estructura modular mostrada arriba.
 
-### ✅ ETAPA 1 – Análisis Exploratorio & Preprocesamiento
+###  ETAPA 1 – Análisis Exploratorio & Preprocesamiento
 Ver `Proyecto_Heart_Disease_Completo.ipynb`.
 
-### ✅ ETAPA 2 – Entrenamiento Seguro
+###  ETAPA 2 – Entrenamiento Seguro
 Pipeline con `GridSearchCV` + validación cruzada estratificada. Mejor modelo: **GradientBoostingClassifier**.
 
 ---
 
-### ✅ ETAPA 3 – Despliegue Local (FastAPI + Docker)
+###  ETAPA 3 – Despliegue Local (FastAPI + Docker)
 
 **Ejecutar la API directamente:**
 ```bash
@@ -80,7 +80,7 @@ curl http://localhost:8000/health
 
 ---
 
-### ✅ ETAPA 4 – Orquestación (Kubernetes)
+###  ETAPA 4 – Orquestación (Kubernetes)
 
 Requiere [minikube](https://minikube.sigs.k8s.io/) o [kind](https://kind.sigs.k8s.io/).
 
@@ -107,7 +107,7 @@ El servicio queda expuesto en `<minikube-ip>:30080`.
 
 ---
 
-### ✅ ETAPA 5 – Integración Continua (GitHub Actions)
+###  ETAPA 5 – Integración Continua (GitHub Actions)
 
 El workflow `.github/workflows/ci.yml` se ejecuta automáticamente en cada push a `main`:
 
@@ -124,7 +124,7 @@ pytest tests/ -v
 
 ---
 
-### ✅ ETAPA 6 – Monitoreo con Evidently
+###  ETAPA 6 – Monitoreo con Evidently
 
 ```bash
 pip install evidently
