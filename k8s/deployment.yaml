@@ -1,0 +1,49 @@
+# ─── ETAPA 4: Kubernetes – Deployment ────────────────────────────
+# Despliega 2 réplicas de la API en el cluster local (minikube / kind)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: heart-disease-api
+  labels:
+    app: heart-disease-api
+    version: "1.0"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: heart-disease-api
+  template:
+    metadata:
+      labels:
+        app: heart-disease-api
+    spec:
+      containers:
+        - name: heart-api
+          image: heart-disease-api:latest   # Cambia por tu imagen de DockerHub/ECR si aplica
+          imagePullPolicy: IfNotPresent             # Para uso local con minikube
+          ports:
+            - containerPort: 8000
+          env:
+            - name: MODEL_PATH
+              value: "model.joblib"
+            - name: PORT
+              value: "8000"
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 30
